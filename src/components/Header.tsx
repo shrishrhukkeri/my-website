@@ -1,5 +1,6 @@
 import React from "react";
 import { Moon, Sun } from "lucide-react";
+import { LiveVisitorCounter } from "./LiveVisitorCounter";
 
 interface HeaderProps {
   isDark: boolean;
@@ -29,6 +30,9 @@ export const Header: React.FC<HeaderProps> = ({ isDark, toggleDark }) => {
 
       {/* Action Buttons */}
       <div className="flex items-center gap-3">
+        {/* Live Visitor Counter Badge */}
+        <LiveVisitorCounter variant="header" />
+
         {/* Theme Toggle */}
         <button
           onClick={toggleDark}

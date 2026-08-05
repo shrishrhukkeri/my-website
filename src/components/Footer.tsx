@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Terminal as TerminalIcon, Send, Mail, ArrowRight } from "lucide-react";
 import { profileData } from "../data/profileData";
 import { Ticker } from "./Ticker";
+import { LiveVisitorCounter } from "./LiveVisitorCounter";
 
 export const Footer: React.FC = () => {
   // Terminal state & logic
@@ -250,8 +251,13 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
+      {/* Live Telemetry Visitor Badge */}
+      <div className="w-full pt-8 pb-4 flex justify-center items-center">
+        <LiveVisitorCounter variant="footer" />
+      </div>
+
       {/* Copyright bottom */}
-      <div className="w-full py-8 border-t border-slate-900 text-center text-[9px] font-mono tracking-widest text-slate-650 opacity-60">
+      <div className="w-full py-6 border-t border-slate-900 text-center text-[9px] font-mono tracking-widest text-slate-650 opacity-60">
         &copy; {new Date().getFullYear()} SHRISH RAHUL HUKKERI. SECURE CYBER-PHYSICAL TELEMETRY SYSTEMS.
       </div>
     </footer>
