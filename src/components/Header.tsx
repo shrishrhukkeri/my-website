@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Moon, Sun, Download, Menu, X, ArrowUpRight, Eye } from "lucide-react";
+import React, { useState } from "react";
+import { Moon, Sun, Download, Menu, X, ArrowUpRight } from "lucide-react";
 import { profileData } from "../data/profileData";
 
 interface HeaderProps {
@@ -9,39 +9,6 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ isDark, toggleDark }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [visitorCount, setVisitorCount] = useState<number>(1429);
-
-  // Live Visitor Counter Tracking (Persistent with Real-Time Blip)
-  useEffect(() => {
-    try {
-      const BASE_COUNT = 1428;
-      const stored = localStorage.getItem("shrish_portfolio_visits");
-      let count = stored ? parseInt(stored, 10) : BASE_COUNT;
-
-      if (!sessionStorage.getItem("shrish_visit_recorded")) {
-        count += 1;
-        sessionStorage.setItem("shrish_visit_recorded", "true");
-        localStorage.setItem("shrish_portfolio_visits", count.toString());
-      }
-      setVisitorCount(count);
-
-      // Async live telemetry sync
-      fetch("https://api.counterapi.dev/v1/shrish-portfolio-aiot/visits/up")
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && typeof data.count === "number") {
-            const liveTotal = BASE_COUNT + data.count;
-            setVisitorCount(liveTotal);
-            localStorage.setItem("shrish_portfolio_visits", liveTotal.toString());
-          }
-        })
-        .catch(() => {
-          // Graceful fallback to local count
-        });
-    } catch {
-      // Fallback in case storage access is restricted
-    }
-  }, []);
 
   const navLinks = [
     { name: "Home", href: "#hero" },
@@ -53,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({ isDark, toggleDark }) => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 dark:bg-[#0b111e]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Brand Logo: "Shrish Hukkeri" with peacock green/flame blue dot */}
         <a href="#hero" className="flex items-center gap-1 group shrink-0">
@@ -63,87 +30,38 @@ export const Header: React.FC<HeaderProps> = ({ isDark, toggleDark }) => {
           <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a884] inline-block mb-1" />
         </a>
 
-        {/* Live Visitor Count Capsule (Glowing Capsule with Eye Icon) */}
-        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-auto z-20">
-          <div
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 dark:bg-[#111927]/95 border border-slate-200/90 dark:border-slate-700/80 shadow-[0_0_12px_rgba(0,102,255,0.2),0_0_20px_rgba(0,168,132,0.2)] dark:shadow-[0_0_14px_rgba(41,121,255,0.35),0_0_24px_rgba(0,203,160,0.3)] select-none backdrop-blur-md font-mono text-[11px] text-slate-700 dark:text-slate-200 transition-all hover:scale-[1.03]"
-            title="Live Visitor Count"
-          >
-            {/* Compact Eye Icon */}
-            <Eye size={13} className="text-slate-400 dark:text-slate-400 shrink-0" />
-
-            {/* "Visits:" label & count */}
-            <div className="flex items-center gap-1.5 leading-none">
-              <span className="text-slate-500 dark:text-slate-400 font-normal">Visits:</span>
-              <span className="font-extrabold text-slate-900 dark:text-white tracking-tight">
-                {visitorCount.toLocaleString()}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop Navigation Links & Action Group (Right Side) */}
-        <div className="hidden lg:flex items-center gap-6">
-          <nav className="flex items-center gap-6 text-sm font-display font-medium text-slate-600 dark:text-slate-300">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="hover:text-[#0066ff] dark:hover:text-[#2979ff] transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-3 pl-2 border-l border-slate-200 dark:border-slate-800">
+        {/* Desktop Navigation Links - Clean, un-occluded layout */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-display font-medium text-slate-600 dark:text-slate-300">
+          {navLinks.map((link) => (
             <a
-              href={profileData.contact.resumeUrl}
-              download="Shrish_Rahul_Hukkeri_Resume.pdf"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#0066ff]/10 dark:bg-[#2979ff]/15 text-[#0066ff] dark:text-[#2979ff] border border-[#0066ff]/30 dark:border-[#2979ff]/40 hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00a884] hover:text-white dark:hover:text-white transition-all duration-200"
-              title="Download CV (PDF)"
+              key={link.name}
+              href={link.href}
+              className="hover:text-[#0066ff] dark:hover:text-[#2979ff] transition-colors"
             >
-              <Download size={13} />
-              <span>Download CV</span>
+              {link.name}
             </a>
+          ))}
+        </nav>
 
-            <button
-              onClick={toggleDark}
-              className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer"
-              aria-label="Toggle theme"
-              title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {isDark ? <Sun size={16} className="text-amber-400" /> : <Moon size={16} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Medium Screen / Tablet Navigation (when lg is not active) */}
-        <div className="hidden sm:flex lg:hidden items-center gap-2">
+        {/* Desktop Action Group (Download CV + Theme Toggle) */}
+        <div className="hidden sm:flex items-center gap-3">
           <a
             href={profileData.contact.resumeUrl}
             download="Shrish_Rahul_Hukkeri_Resume.pdf"
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold bg-[#0066ff]/10 dark:bg-[#2979ff]/15 text-[#0066ff] dark:text-[#2979ff] border border-[#0066ff]/30 hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00a884] hover:text-white transition-all"
-            title="Download CV"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#0066ff]/10 dark:bg-[#2979ff]/15 text-[#0066ff] dark:text-[#2979ff] border border-[#0066ff]/30 dark:border-[#2979ff]/40 hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00a884] hover:text-white dark:hover:text-white transition-all duration-200"
+            title="Download CV (PDF)"
           >
-            <Download size={12} />
-            <span>CV</span>
+            <Download size={13} />
+            <span>Download CV</span>
           </a>
 
           <button
             onClick={toggleDark}
-            className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
+            className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer"
             aria-label="Toggle theme"
+            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <Sun size={16} className="text-amber-400" /> : <Moon size={16} />}
-          </button>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
-            aria-label="Open menu"
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 

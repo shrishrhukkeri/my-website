@@ -1,5 +1,5 @@
-import React from "react";
-import { Download, ExternalLink, Sparkles } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Download, ExternalLink, Sparkles, Eye } from "lucide-react";
 import { profileData } from "../data/profileData";
 import profileCutout from "../assets/bg.png";
 
@@ -10,11 +10,57 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = () => {
+  const [visitorCount, setVisitorCount] = useState<number>(1434);
+
+  useEffect(() => {
+    try {
+      const BASE_COUNT = 1434;
+      const stored = localStorage.getItem("shrish_portfolio_visits");
+      let count = stored ? parseInt(stored, 10) : BASE_COUNT;
+
+      if (!sessionStorage.getItem("shrish_visit_recorded")) {
+        count += 1;
+        sessionStorage.setItem("shrish_visit_recorded", "true");
+        localStorage.setItem("shrish_portfolio_visits", count.toString());
+      }
+      setVisitorCount(count);
+
+      fetch("https://api.counterapi.dev/v1/shrish-portfolio-aiot/visits/up")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && typeof data.count === "number") {
+            const liveTotal = BASE_COUNT + data.count;
+            setVisitorCount(liveTotal);
+            localStorage.setItem("shrish_portfolio_visits", liveTotal.toString());
+          }
+        })
+        .catch(() => {});
+    } catch {
+      // Graceful fallback
+    }
+  }, []);
+
   return (
     <section
       id="hero"
-      className="relative w-full pt-4 sm:pt-6 pb-12 sm:pb-16 overflow-hidden bg-white dark:bg-[#0b111e] transition-colors duration-300"
+      className="relative w-full pt-3 sm:pt-4 pb-12 sm:pb-16 overflow-hidden bg-white dark:bg-[#0b111e] transition-colors duration-300"
     >
+      {/* Visitor Badge (Positioned below top bar, left-aligned directly below Shrish Hukkeri) */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-2 sm:mb-3 flex justify-start relative z-20">
+        <div
+          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100/85 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs select-none font-mono text-[10.5px] text-slate-700 dark:text-slate-300 transition-all hover:bg-slate-200/60 dark:hover:bg-slate-700/60"
+          title="Live Visitor Count"
+        >
+          <Eye size={12} className="text-slate-400 dark:text-slate-400 shrink-0" />
+          <div className="flex items-center gap-1 leading-none">
+            <span className="text-slate-500 dark:text-slate-400 font-normal">Visits:</span>
+            <span className="font-extrabold text-slate-900 dark:text-white tracking-tight">
+              {visitorCount.toLocaleString()}
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Full-Hero Zoomed Translucent Peacock Feather Backdrop (Behind Text & Portrait) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 flex items-center justify-center overflow-hidden select-none">
         <div className="w-full max-w-none h-full flex items-center justify-center">
