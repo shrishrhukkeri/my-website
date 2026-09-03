@@ -63,24 +63,18 @@ export const Header: React.FC<HeaderProps> = ({ isDark, toggleDark }) => {
           <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00a884] inline-block mb-1" />
         </a>
 
-        {/* Live Blip Visitor Count (Exact Match to User Reference Pill) */}
+        {/* Live Visitor Count Capsule (Glowing Capsule with Eye Icon) */}
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-auto z-20">
           <div
-            className="inline-flex items-center gap-2 px-3 py-1 sm:py-1.5 rounded-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 shadow-xs select-none backdrop-blur-xs font-mono text-xs text-slate-700 dark:text-slate-300 transition-all hover:bg-slate-200/60 dark:hover:bg-slate-700/60"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 dark:bg-[#111927]/95 border border-slate-200/90 dark:border-slate-700/80 shadow-[0_0_12px_rgba(0,102,255,0.2),0_0_20px_rgba(0,168,132,0.2)] dark:shadow-[0_0_14px_rgba(41,121,255,0.35),0_0_24px_rgba(0,203,160,0.3)] select-none backdrop-blur-md font-mono text-[11px] text-slate-700 dark:text-slate-200 transition-all hover:scale-[1.03]"
             title="Live Visitor Count"
           >
-            {/* Solid vibrant green blip dot with subtle pulse */}
-            <span className="relative flex h-2.5 w-2.5 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00c278] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00c278]"></span>
-            </span>
+            {/* Compact Eye Icon */}
+            <Eye size={13} className="text-slate-400 dark:text-slate-400 shrink-0" />
 
-            {/* Eye Icon matching mockup */}
-            <Eye size={15} className="text-slate-400 dark:text-slate-400 shrink-0" />
-
-            {/* "Visits:" label and bold count */}
-            <div className="flex items-center gap-1.5 font-mono text-xs">
-              <span className="text-slate-600 dark:text-slate-300 font-normal">Visits:</span>
+            {/* "Visits:" label & count */}
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="text-slate-500 dark:text-slate-400 font-normal">Visits:</span>
               <span className="font-extrabold text-slate-900 dark:text-white tracking-tight">
                 {visitorCount.toLocaleString()}
               </span>
