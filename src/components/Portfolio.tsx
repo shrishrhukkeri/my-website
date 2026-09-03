@@ -1,94 +1,112 @@
 import React from "react";
-import { ArrowUpRight, Shield, Award, ExternalLink } from "lucide-react";
+import { ArrowUpRight, Award } from "lucide-react";
 import { profileData } from "../data/profileData";
 
 export const Portfolio: React.FC = () => {
+  const projects = [
+    {
+      title: "Vizagon",
+      category: "On-Campus Incubator",
+      summary: "A hardware-and-software technology venture incubator founded by Shrish, along with Vaishnavi and Vamshi Ganesh B., formalized via institutional MoU with RNSIT on March 11, 2026.",
+      techStack: ["Hardware Systems", "Software Architecture", "IoT Cloud"],
+      impact: "Institutional MoU formalized with RNSIT to operate dedicated innovation space.",
+      link: profileData.contact.github,
+    },
+    {
+      title: "Vehicular Safety Management System (VSMS) & IoV",
+      category: "Internet of Vehicles",
+      summary: "An intelligent telemetry framework tracking real-time vehicular dynamics to predict active collision hazards and diagnose powertrain health on edge controllers.",
+      techStack: ["IoV", "Embedded C++", "Telemetry Sensors", "MQTT"],
+      impact: "Selected for the national KPIT Sparkle technical showcase.",
+      link: profileData.contact.github,
+    },
+    {
+      title: "SAV4Secure (Smart Automation using Splash)",
+      category: "Smart Automation & Safety",
+      summary: "Child safety domestic automation platform engineered to prevent hazardous domestic incidents through rapid automated isolation sensors and fail-safe solenoids.",
+      techStack: ["Arduino", "Hardware Prototyping", "Fail-Safe Logic"],
+      impact: "Won 1st Place (Smart Automation) at National Smart India Hackathon (SIH) 2022 (₹25,000 award).",
+      link: profileData.contact.github,
+    },
+    {
+      title: "IoMT DDoS Anomaly Telemetry Dataset",
+      category: "Cybersecurity Research",
+      summary: "A curated cyber-physical dataset tracking ESP32 node behaviors under simulated volumetric attacks (HTTP, UDP, SYN floods) to evaluate lightweight machine learning models.",
+      techStack: ["Python", "Kaggle Dataset", "ESP32", "Scikit-learn"],
+      impact: "Published dataset for resource-constrained edge cyber-physical research.",
+      link: "https://www.kaggle.com/datasets",
+    },
+  ];
+
   return (
     <section
       id="projects"
-      className="w-full max-w-7xl mx-auto px-6 py-24 bg-white dark:bg-slate-900 transition-colors duration-300 space-y-16"
+      className="w-full py-20 sm:py-28 bg-slate-50/70 dark:bg-[#0e1523] transition-colors duration-300 border-t border-slate-200/80 dark:border-slate-800/80"
     >
-      {/* 1. Projects Showcase Header & Grid */}
-      <div className="space-y-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-[1.5px] bg-blue-600 dark:bg-sky-400" />
-              <span className="font-mono text-xs uppercase tracking-wider font-semibold text-blue-600 dark:text-sky-400">
-                My Portfolio
-              </span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 dark:text-white leading-tight">
-              My Latest <span className="text-blue-600 dark:text-sky-400">Projects & Ventures</span>
-            </h2>
-          </div>
-
-          <a
-            href="https://github.com/shrishrahulhukkeri"
-            target="_blank"
-            rel="noreferrer"
-            className="px-6 py-2.5 rounded-full text-xs font-semibold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-blue-600 dark:hover:bg-slate-100 transition-colors inline-flex items-center gap-2"
-          >
-            View GitHub Profile
-            <ExternalLink size={12} />
-          </a>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-left">
+        
+        {/* Section Header with Flame Blue to Peacock Green indicator */}
+        <div className="text-center space-y-3">
+          <div className="w-1.5 h-6 bg-gradient-to-b from-[#0066ff] to-[#00a884] mx-auto rounded-full" />
+          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Projects
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+            Featured hardware-software co-designs, cybersecurity research, and incubated ventures.
+          </p>
         </div>
 
-        {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {profileData.projects.map((project, idx) => (
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((proj, idx) => (
             <div
               key={idx}
-              className="group flex flex-col justify-between p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 hover:border-blue-600 dark:hover:border-sky-400 transition-all duration-300 shadow-sm hover:shadow-md h-[340px]"
+              className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#131c2d] hover:border-[#0066ff]/70 dark:hover:border-[#2979ff]/70 transition-all duration-200 flex flex-col justify-between space-y-4 shadow-xs hover:shadow-md"
             >
-              <div className="space-y-4">
-                {/* Visual Card Cover */}
-                <div className="w-full h-32 rounded-xl bg-gradient-to-br from-blue-600/10 via-sky-400/5 to-slate-200/20 dark:from-blue-950/40 dark:via-sky-950/20 dark:to-slate-900/30 flex items-center justify-center border border-slate-200/50 dark:border-slate-800/40 relative overflow-hidden">
-                  <span className="font-display font-black text-4xl text-blue-600/10 dark:text-sky-400/5 tracking-wider absolute inset-0 flex items-center justify-center uppercase select-none">
-                    {project.title.substring(0, 10)}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-mono font-semibold uppercase text-[#00a884] dark:text-[#00cba0] tracking-wider">
+                    {proj.category}
                   </span>
-                  <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 shadow flex items-center justify-center text-blue-600 dark:text-sky-400">
-                    <Shield size={18} />
-                  </div>
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-1 rounded-md text-slate-400 hover:text-[#0066ff] transition-colors"
+                    title="View repository"
+                  >
+                    <ArrowUpRight size={18} />
+                  </a>
                 </div>
 
-                {/* Tech Badges */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {project.techStack.map((tech, i) => (
+                <h3 className="font-display font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
+                  {proj.title}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+                  {proj.summary}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {proj.techStack.map((tech, i) => (
                     <span
                       key={i}
-                      className="bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-sky-400 px-2 py-0.5 rounded text-[9px] font-mono font-medium"
+                      className="bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 text-[10px] font-mono px-2 py-0.5 rounded-md"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-
-                {/* Title & Info */}
-                <div className="flex justify-between items-start gap-4">
-                  <div className="space-y-1">
-                    <h3 className="font-display font-bold text-base text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-light line-clamp-2">
-                      {project.summary}
-                    </p>
-                  </div>
-                  <div className="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 group-hover:text-blue-600 group-hover:border-blue-600 dark:group-hover:text-sky-400 dark:group-hover:border-sky-400 transition-all">
-                    <ArrowUpRight size={14} className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                </div>
               </div>
 
-              {/* Impact Footer */}
-              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center space-x-2 text-[10px] font-mono text-blue-600 dark:text-sky-400 font-semibold tracking-wide">
-                <Award size={12} />
-                <span>{project.impact}</span>
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 text-xs font-mono text-[#00a884] dark:text-[#00cba0]">
+                <Award size={13} className="shrink-0" />
+                <span className="font-medium text-[11px] leading-tight">{proj.impact}</span>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

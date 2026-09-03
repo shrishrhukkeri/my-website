@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { TechStrip } from "./components/TechStrip";
 import { About } from "./components/About";
-import { Tools } from "./components/Tools";
 import { Portfolio } from "./components/Portfolio";
-import { Education } from "./components/Education";
 import { Experience } from "./components/Experience";
-import { Blogs } from "./components/Blogs";
 import { Footer } from "./components/Footer";
-import { ChatbotWidget } from "./components/ChatbotWidget";
 
 function App() {
+  // Default to Light Mode as explicitly requested ("simple and light mode"), with full Dark Mode toggle support
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -27,42 +25,32 @@ function App() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-350 font-sans">
-      {/* Floating Capsule Header */}
+    <div className="w-full min-h-screen bg-white dark:bg-[#0f141d] text-slate-900 dark:text-white transition-colors duration-300 font-sans antialiased selection:bg-[#f2583e]/20 selection:text-[#f2583e]">
+      {/* 1. Top Navigation Bar */}
       <Header isDark={isDark} toggleDark={toggleDark} />
 
-      {/* Main Pages/Sections */}
+      {/* Main Content Flow matching the mockup */}
       <main className="w-full">
-        {/* Hero Section with canvas particle background */}
+        {/* 2. Hero Section with Avatar Halo & Action Buttons */}
         <Hero isDark={isDark} />
 
-        {/* About Me Section (Dark Theme) */}
+        {/* 3. Horizontal Tech Stack Strip directly below Hero */}
+        <TechStrip />
+
+        {/* 4. About Me: Left Services Timeline + Right Narrative & 3 Stats */}
         <About />
 
-        {/* Tools Section */}
-        <Tools />
-
-        {/* Projects Showcase & Telemetry DDoS Simulator */}
+        {/* 5. Projects Section with Coral Indicator */}
         <Portfolio />
 
-        {/* Horizontal Education Section */}
-        <Education />
-
-        {/* Horizontal Work Experience Section */}
+        {/* 6. Experience & Trajectory */}
         <Experience />
-
-        {/* Latest Publications & Datasets */}
-        <Blogs />
       </main>
 
-      {/* Multi-column Footer + Secure CLI Terminal */}
+      {/* 7. Minimalist Contact Footer */}
       <Footer />
-
-      {/* Groq-Connected Chatbot Widget */}
-      <ChatbotWidget />
     </div>
   );
 }
 
 export default App;
-

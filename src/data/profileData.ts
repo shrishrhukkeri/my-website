@@ -53,12 +53,13 @@ export interface ProfileData {
     email: string;
     linkedin: string;
     github: string;
+    resumeUrl: string;
   };
 }
 
 export const profileData: ProfileData = {
   name: "Shrish Rahul Hukkeri",
-  tagline: "Securing Edge Systems. Building Autonomous Ventures.",
+  tagline: "Innovating at the edge of possibility",
   aboutText: "A dedicated researcher, engineer, and venture builder at RNSIT bridging physical hardware with secure software systems. Passionate about solving complex real-world problems with professionalism, discipline, and a relentless drive to build things that matter.",
   education: [
     {
@@ -235,9 +236,10 @@ export const profileData: ProfileData = {
     link: "https://www.kaggle.com/datasets" // Placeholder for Kaggle link
   },
   contact: {
-    email: "shrishrahulhukkeri@gmail.com",
+    email: "shrishrhukkeri@gmail.com",
     linkedin: "https://linkedin.com/in/shrish-hukkeri",
-    github: "https://github.com/shrishrahulhukkeri"
+    github: "https://github.com/shrishrahulhukkeri",
+    resumeUrl: "/Shrish_Hukkeri_Resume.pdf"
   }
 };
 
