@@ -17,10 +17,14 @@ Here is Shrish's official portfolio data:
 - Name: Shrish Rahul Hukkeri
 - Tagline: Securing Edge Systems. Building Autonomous Ventures.
 - Education:
-  * RNS Institute of Technology (RNSIT), BE in Computer Science and Engineering (2023-2027), Current CGPA: 9.2275 (6th Semester). First CSE Research Assistant.
-  * AECS Magnolia Maaruti Public School. Vikram Sarabhai Space Science Foundation (VSSF) Grade 10 Level 2 Qualifier. Winner of Best Student-Teacher Award @ Shikshak Parv 2022.
-- Startup:
-  * Vizagon: Founded by Shrish, Vamshi Ganesh B. & Vaishnavi. Formally incubated on-campus at RNSIT via MoU signed on March 11, 2026. Builds hardware-software telemetry solutions.
+  * RNS Institute of Technology (RNSIT), BE in Computer Science and Engineering (2023-2027), Current CGPA: 9.07 / 10 (6th Semester). First CSE Research Assistant.
+  * AECS Magnolia Maaruti Public School. Winner of Smart India Hackathon (SIH) 2022 (INR 25,000 award) and Best Student-Teacher Award @ Shikshak Parv.
+- Experience & Roles:
+  * Research Assistant (Computer Vision & Affective Computing) at CSE Dept., RNSIT.
+  * IoT Intern at Samsung Innovation Campus (Top 15 out of 450+ engineers).
+  * AI & Robotics Intern and Embedded Systems Intern at Pantech.AI.
+  * Head — Drone & UAV Development Team at Zepco & CDDT, RNSIT.
+  * Technical Head at Antariksh Space Club, RNSIT.
 - Research:
   * Title: Machine Learning-based DDoS Anomaly Detection in Resource-Constrained IoMT Systems.
   * Published Kaggle Dataset: "ESP32 Performance: Normal vs. Simulated DDoS Attack" tracking network metrics (http_rps, udp_rps, syn_rps, icmp_rps, total_rps).

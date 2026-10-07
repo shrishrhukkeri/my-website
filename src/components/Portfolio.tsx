@@ -5,33 +5,49 @@ import { profileData } from "../data/profileData";
 export const Portfolio: React.FC = () => {
   const projects = [
     {
-      title: "Vizagon",
-      category: "On-Campus Incubator",
-      summary: "A hardware-and-software technology venture incubator founded by Shrish, along with Vaishnavi and Vamshi Ganesh B., formalized via institutional MoU with RNSIT on March 11, 2026.",
-      techStack: ["Hardware Systems", "Software Architecture", "IoT Cloud"],
-      impact: "Institutional MoU formalized with RNSIT to operate dedicated innovation space.",
+      title: "SAV4Secure — Child Safety Automation",
+      category: "Smart Automation & Safety",
+      summary: "AirTag-driven child safety monitoring automation engineered to prevent domestic hazards through rapid automated isolation sensors.",
+      techStack: ["AirTag", "SPLASH Programming", "Smart Automations", "Shortcuts"],
+      impact: "Won 1st Place at National Smart India Hackathon (SIH) — ₹25,000 prize.",
       link: profileData.contact.github,
     },
     {
       title: "Vehicular Safety Management System (VSMS) & IoV",
       category: "Internet of Vehicles",
-      summary: "An intelligent telemetry framework tracking real-time vehicular dynamics to predict active collision hazards and diagnose powertrain health on edge controllers.",
-      techStack: ["IoV", "Embedded C++", "Telemetry Sensors", "MQTT"],
+      summary: "IoV vehicle safety prototype utilizing ESP32 nodes for real-time telemetry, distance sensing, and collision hazard alerts.",
+      techStack: ["C++", "Python", "ESP32", "Edge IoT", "MQTT"],
       impact: "Selected for the national KPIT Sparkle technical showcase.",
       link: profileData.contact.github,
     },
     {
-      title: "SAV4Secure (Smart Automation using Splash)",
-      category: "Smart Automation & Safety",
-      summary: "Child safety domestic automation platform engineered to prevent hazardous domestic incidents through rapid automated isolation sensors and fail-safe solenoids.",
-      techStack: ["Arduino", "Hardware Prototyping", "Fail-Safe Logic"],
-      impact: "Won 1st Place (Smart Automation) at National Smart India Hackathon (SIH) 2022 (₹25,000 award).",
+      title: "AiDBMS — NLP Intelligent Database System",
+      category: "Generative AI & Data",
+      summary: "Natural language interface parsing plain-English queries into validated, executable SQL with explainable step-by-step rationales.",
+      techStack: ["Python", "PostgreSQL", "SQLite", "NLP", "LLM APIs", "Streamlit"],
+      impact: "Translates plain-English to validated SQL with interactive execution.",
+      link: profileData.contact.github,
+    },
+    {
+      title: "FAST — Farmers Assistance System using Technology",
+      category: "Precision Agriculture",
+      summary: "Decision-support system fusing soil moisture, temperature, and humidity sensors with ML to deliver optimal crop recommendations.",
+      techStack: ["Arduino Uno", "IoT Sensors", "Python", "ML Classification"],
+      impact: "Advises real-time crop actions for irrigation, fertilisation, and harvest.",
+      link: profileData.contact.github,
+    },
+    {
+      title: "React Native Mobile Applications",
+      category: "Mobile Engineering",
+      summary: "Cross-platform mobile apps engineered with modern state management, real-time data sync, offline-first storage, and responsive UI.",
+      techStack: ["React Native", "TypeScript", "Expo", "Supabase", "REST APIs"],
+      impact: "Scalable mobile architecture delivering native performance across Android and iOS.",
       link: profileData.contact.github,
     },
     {
       title: "IoMT DDoS Anomaly Telemetry Dataset",
       category: "Cybersecurity Research",
-      summary: "A curated cyber-physical dataset tracking ESP32 node behaviors under simulated volumetric attacks (HTTP, UDP, SYN floods) to evaluate lightweight machine learning models.",
+      summary: "Cyber-physical dataset tracking ESP32 node performance under simulated volumetric DDoS attacks (HTTP, UDP, SYN floods).",
       techStack: ["Python", "Kaggle Dataset", "ESP32", "Scikit-learn"],
       impact: "Published dataset for resource-constrained edge cyber-physical research.",
       link: "https://www.kaggle.com/datasets",
@@ -52,7 +68,7 @@ export const Portfolio: React.FC = () => {
             Projects
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-            Featured hardware-software co-designs, cybersecurity research, and incubated ventures.
+            Featured hardware-software co-designs, intelligent AI/ML systems, and cybersecurity research.
           </p>
         </div>
 

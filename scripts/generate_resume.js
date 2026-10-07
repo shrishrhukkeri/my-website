@@ -22,37 +22,37 @@ async function createResume() {
   const cobaltBlue = rgb(37 / 255, 99 / 255, 235 / 255); // #2563eb
   const lineGray = rgb(226 / 255, 232 / 255, 240 / 255);
 
-  let y = height - 42;
+  let y = height - 38;
 
   // Header: Name
   page.drawText("SHRISH RAHUL HUKKERI", {
     x: 42,
     y,
-    size: 20,
+    size: 19,
     font: fontBold,
     color: darkNavy,
   });
 
-  y -= 16;
-  page.drawText("Securing Edge Systems | Building Autonomous Ventures | CSE Undergrad @ RNSIT", {
+  y -= 14;
+  page.drawText("Computer Science Engineer · AI/ML · IoT & Embedded Systems · AIoT · IoV · Edge AI", {
     x: 42,
     y,
-    size: 9.5,
+    size: 9,
     font: fontRegular,
     color: cobaltBlue,
   });
 
-  y -= 14;
-  const contactText = "Bengaluru, India  |  shrishrhukkeri@gmail.com  |  linkedin.com/in/shrish-hukkeri  |  github.com/shrishrahulhukkeri";
+  y -= 13;
+  const contactText = "Bengaluru, India | shrishrhukkeri@gmail.com | +91-7975660668 | linkedin.com/in/shrish-hukkeri | github.com/shrishrahulhukkeri";
   page.drawText(contactText, {
     x: 42,
     y,
-    size: 8.5,
+    size: 8,
     font: fontRegular,
     color: slate600,
   });
 
-  y -= 12;
+  y -= 10;
   // Divider
   page.drawLine({
     start: { x: 42, y },
@@ -61,24 +61,24 @@ async function createResume() {
     color: lineGray,
   });
 
-  y -= 18;
+  y -= 14;
 
   const drawSectionHeading = (title) => {
     page.drawText(title.toUpperCase(), {
       x: 42,
       y,
-      size: 10,
+      size: 9.5,
       font: fontBold,
       color: cobaltBlue,
     });
-    y -= 4;
+    y -= 3;
     page.drawLine({
       start: { x: 42, y },
       end: { x: width - 42, y },
       thickness: 0.75,
       color: lineGray,
     });
-    y -= 12;
+    y -= 10;
   };
 
   // 1. EDUCATION
@@ -87,162 +87,172 @@ async function createResume() {
   page.drawText("RNS Institute of Technology (RNSIT)", {
     x: 42,
     y,
-    size: 10,
+    size: 9.5,
     font: fontBold,
     color: darkNavy,
   });
   const eduDate = "Bengaluru, India | 2023 - 2027";
   page.drawText(eduDate, {
-    x: width - 42 - fontRegular.widthOfTextAtSize(eduDate, 8.5),
+    x: width - 42 - fontRegular.widthOfTextAtSize(eduDate, 8),
     y,
-    size: 8.5,
+    size: 8,
     font: fontRegular,
     color: slate600,
   });
-  y -= 12;
-  page.drawText("Bachelor of Engineering (BE) in Computer Science & Engineering - CGPA: 9.2275 (6th Semester)", {
+  y -= 11;
+  page.drawText("Bachelor of Engineering (BE) in Computer Science & Engineering - CGPA: 9.07 / 10 (6th Semester)", {
     x: 42,
     y,
-    size: 9,
+    size: 8.5,
     font: fontOblique,
     color: slate600,
   });
-  y -= 11;
+  y -= 10;
   const eduBullets = [
-    "1st Research Assistant from Dept. of CSE working under Dr. MJ Sudhamani & Dr. Abijith.",
-    "Class Representative (Batch of 2027, 70+ engineers); Active Member of Center for Drone Development Technologies (CDDT).",
-    "Recognized top performer with highest number of verified professional certifications (100+) in the CSE department."
+    "First-ever Research Assistant selected from the CSE Department at RNSIT (Computer Vision & Affective Computing).",
+    "Relevant Coursework: DSA, DAA, DBMS, Computer Networks, OS, AI/ML, Software Engineering.",
+    "Top certification performer in CSE with 130+ verified credentials across Infosys, Coursera, NPTEL, IBM, and Cisco."
   ];
   for (const b of eduBullets) {
-    page.drawText(`-  ${b}`, { x: 50, y, size: 8.5, font: fontRegular, color: slate600 });
-    y -= 11;
+    page.drawText(`-  ${b}`, { x: 50, y, size: 8, font: fontRegular, color: slate600 });
+    y -= 10;
   }
-  y -= 6;
+  y -= 4;
 
   // 2. EXPERIENCE & ROLES
-  drawSectionHeading("Experience & Leadership");
+  drawSectionHeading("Experience");
 
   const experiences = [
+    {
+      title: "Research Assistant (Computer Vision & Affective Computing)",
+      org: "CSE Dept., RNSIT",
+      period: "Aug 2025 - Apr 2026",
+      bullets: [
+        "First-ever Research Assistant from CSE Dept. at RNSIT, working under research faculty on vision & affective computing.",
+        "Researched ML-based DDoS anomaly detection in resource-constrained IoT/IoMT hardware nodes."
+      ]
+    },
     {
       title: "IoT Intern",
       org: "Samsung Innovation Campus",
       period: "Sep 2025 - May 2026",
       bullets: [
-        "Selected for prestigious IoT program among Top 15 out of 450+ applicants at RNSIT Center of Excellence.",
-        "Built edge computing configurations interfacing sensor arrays with real-time cloud telemetry and telemetry analytics."
+        "Ranked Top 15 out of 450+ engineers in competitive Samsung program covering embedded design and cloud telemetry.",
+        "Designed and implemented IoT prototypes integrating cloud dashboards and real-time sensor data pipelines."
       ]
     },
     {
-      title: "Research Assistant (AI/ML & Cyber-Physical Security)",
-      org: "Department of CSE, RNSIT",
-      period: "Aug 2025 - Apr 2026",
+      title: "AI & Robotics Intern",
+      org: "Pantech.AI",
+      period: "Jun 2026",
       bullets: [
-        "Conducted research in ML anomaly detection, Computer Vision, LiFi, and edge cyber-physical telemetry systems.",
-        "Engineered machine learning models for DDoS anomaly detection in resource-constrained IoMT/IoT hardware nodes."
+        "Implemented real-time YOLO computer vision pipelines for object, lane, and sign detection (>90% accuracy).",
+        "Explored LiDAR sensor fusion, SLAM algorithms, and Raspberry Pi-based autonomous robot development with edge inference."
       ]
     },
     {
-      title: "Co-Founder & Lead Architect",
-      org: "Vizagon (On-Campus Startup Incubator)",
-      period: "2025 - Present",
-      bullets: [
-        "Founded on-campus venture incubator; formalized Institutional MoU signed on March 11, 2026 with RNSIT.",
-        "Driving technology-focused hardware and software initiatives, mentoring student innovation cohorts."
-      ]
-    },
-    {
-      title: "Arduino & Embedded Systems Intern",
+      title: "Embedded Systems Intern",
       org: "Pantech.AI",
       period: "Jun 2025",
       bullets: [
-        "Designed and prototyped automated circuit boards, sensor interfaces, firmware programming, and physical computing loops."
+        "Developed 5+ Arduino and ESP32 embedded prototypes integrating multi-sensor inputs and actuator control."
+      ]
+    },
+    {
+      title: "Head — Drone & UAV Development Team",
+      org: "Zepco & CDDT, RNSIT",
+      period: "2025 - Present",
+      bullets: [
+        "Lead UAV design, aeromodelling, and flight controls across embedded systems, sensor fusion, and ESC calibration.",
+        "Among Top 14 at Boeing Zonal Aeromodelling Competition; 1st Place at SVIT Drone Expo."
       ]
     }
   ];
 
   for (const exp of experiences) {
-    page.drawText(`${exp.title} - ${exp.org}`, { x: 42, y, size: 9.5, font: fontBold, color: darkNavy });
+    page.drawText(`${exp.title} - ${exp.org}`, { x: 42, y, size: 9, font: fontBold, color: darkNavy });
     page.drawText(exp.period, {
-      x: width - 42 - fontRegular.widthOfTextAtSize(exp.period, 8.5),
+      x: width - 42 - fontRegular.widthOfTextAtSize(exp.period, 8),
       y,
-      size: 8.5,
+      size: 8,
       font: fontRegular,
       color: slate600,
     });
-    y -= 11;
+    y -= 10;
     for (const b of exp.bullets) {
-      page.drawText(`-  ${b}`, { x: 50, y, size: 8.5, font: fontRegular, color: slate600 });
-      y -= 10.5;
+      page.drawText(`-  ${b}`, { x: 50, y, size: 8, font: fontRegular, color: slate600 });
+      y -= 9.5;
     }
-    y -= 4;
+    y -= 3;
   }
   y -= 2;
 
-  // 3. KEY PROJECTS & VENTURES
-  drawSectionHeading("Featured Projects & Research");
+  // 3. KEY PROJECTS
+  drawSectionHeading("Projects");
 
   const projects = [
     {
+      name: "SAV4Secure — Child Safety Automation",
+      stack: "AirTag, SPLASH Programming, Smart Automations, Shortcuts",
+      desc: "AirTag-driven child safety automation earning INR 25,000 prize at Smart India Hackathon (SIH 2022)."
+    },
+    {
       name: "Vehicular Safety Management System (VSMS) & IoV",
-      stack: "Internet of Vehicles, Embedded C++, Telemetry Sensors, MQTT",
-      desc: "Intelligent IoV framework tracking telemetry data for active collision avoidance and real-time vehicle telemetry health. Selected for National KPIT Sparkle showcase."
+      stack: "C++, Python, ESP32, Edge IoT, MQTT",
+      desc: "IoV vehicle safety prototype using ESP32 nodes for real-time telemetry and hazard alerts. Selected for KPIT Sparkle."
     },
     {
-      name: "IoMT DDoS Anomaly Detection Telemetry Dataset",
-      stack: "Python, Machine Learning, ESP32, Scikit-learn, Kaggle",
-      desc: "Published custom benchmark dataset capturing ESP32 node behaviors under simulated volumetric attacks (HTTP, UDP, SYN floods) in constrained environments."
+      name: "AiDBMS — NLP Intelligent Database System",
+      stack: "Python, PostgreSQL, SQLite, NLP, LLM APIs, Streamlit",
+      desc: "Natural language query interface translating conversational English queries into validated SQL with explainable outputs."
     },
     {
-      name: "SAV4Secure (Smart Automation using Splash)",
-      stack: "Arduino, Embedded Sensors, Hardware Prototyping",
-      desc: "Child safety domestic automation system preventing hazardous incidents. Won 1st Place at National Smart India Hackathon (SIH) 2022 (INR 25,000 award)."
-    },
-    {
-      name: "AiDBMS (Advanced Interactive DBMS)",
-      stack: "NLP, Python, SQL Engine, Parser",
-      desc: "Natural language translation engine enabling non-technical users to query and manage relational SQL databases via plain conversational text."
+      name: "FAST — Farmers Assistance System using Technology",
+      stack: "Arduino Uno, Soil/Temperature Sensors, Python, ML Classification",
+      desc: "Precision-agriculture decision support system recommending optimal crop actions based on real-time soil & climate feeds."
     }
   ];
 
   for (const proj of projects) {
-    page.drawText(proj.name, { x: 42, y, size: 9.5, font: fontBold, color: darkNavy });
+    page.drawText(proj.name, { x: 42, y, size: 9, font: fontBold, color: darkNavy });
+    y -= 9.5;
+    page.drawText(`Stack: ${proj.stack}`, { x: 42, y, size: 7.5, font: fontOblique, color: cobaltBlue });
+    y -= 9;
+    page.drawText(`-  ${proj.desc}`, { x: 50, y, size: 8, font: fontRegular, color: slate600 });
     y -= 10.5;
-    page.drawText(`Tech Stack: ${proj.stack}`, { x: 42, y, size: 8, font: fontOblique, color: cobaltBlue });
-    y -= 10;
-    page.drawText(`-  ${proj.desc}`, { x: 50, y, size: 8.5, font: fontRegular, color: slate600 });
-    y -= 13;
   }
 
   // 4. HONORS & AWARDS
-  drawSectionHeading("Honors, Awards & Key Certifications");
+  drawSectionHeading("Honors & Awards");
 
   const awards = [
-    "1st Place Winner - Smart India Hackathon (SIH) 2022 (Smart Automation Category, Govt. of India).",
-    "Zonal Finalist & Top 20 Team - Boeing Aeromodelling Workshop & Fixed Wing Piloting Competition (2025).",
-    "1st Place Winner (Consecutive 2x) - Project Open House Panorama (PROP 2024 & PROP 2025) @ RNSIT.",
-    "100+ Professional Certifications - Infosys Springboard, Coursera, NPTEL, Cisco, IBM (Top Performer in CSE Dept)."
+    "Smart India Hackathon (SIH) Winner — INR 25,000 prize for AirTag-driven child safety automation (SAV4Secure).",
+    "Top 15 / 450+ Engineers — Samsung Innovation Campus IoT Internship.",
+    "Top 14 Zonal Level — Boeing Aeromodelling Competition; 1st Place at SVIT Drone Expo.",
+    "1st Place Winner (Consecutive 2x) — Project Open House Panorama (PROP 2024 & PROP 2025) @ RNSIT.",
+    "130+ Professional Certifications — Infosys Springboard, Coursera, NPTEL, Cisco, IBM (Top Performer in CSE Dept)."
   ];
 
   for (const aw of awards) {
-    page.drawText(`-  ${aw}`, { x: 50, y, size: 8.5, font: fontRegular, color: slate600 });
-    y -= 11;
+    page.drawText(`-  ${aw}`, { x: 50, y, size: 8, font: fontRegular, color: slate600 });
+    y -= 9.5;
   }
-  y -= 4;
+  y -= 3;
 
   // 5. TECHNICAL SKILLS
   drawSectionHeading("Technical Skills");
 
   const skillLines = [
-    { label: "AI / ML & Research:", val: "Machine Learning, Anomaly Detection, Computer Vision, Deep Learning, Quantum Computing" },
-    { label: "IoT & Embedded:", val: "ESP32, Arduino, Microcontrollers, Telemetry Analytics, Drone Tech (CDDT), Fixed-Wing Piloting" },
-    { label: "Software & Web:", val: "React, TypeScript, Tailwind CSS, Python, C/C++, Node.js, SQL, REST APIs, Git" },
-    { label: "Venture & Management:", val: "Startup Incubation, Cohort Leadership, Class Representation, Technical Communication" }
+    { label: "Languages:", val: "Python (primary), Java, C / C++, SQL" },
+    { label: "AI / ML & Vision:", val: "Supervised/Unsupervised ML, Deep Learning, CNNs, YOLO (v5/v8), LLM/VLM, OpenCV, SLAM" },
+    { label: "IoT & Embedded:", val: "Arduino, ESP32, Raspberry Pi, Sensors, MQTT/HTTP, Edge Inference, UAVs/Drones" },
+    { label: "Web & Backend:", val: "React, React Native, TypeScript, Flask, FastAPI, PostgreSQL, SQLite, DSA, Git/GitHub" }
   ];
 
   for (const sk of skillLines) {
-    page.drawText(sk.label, { x: 42, y, size: 8.5, font: fontBold, color: darkNavy });
-    page.drawText(sk.val, { x: 165, y, size: 8.5, font: fontRegular, color: slate600 });
-    y -= 11;
+    page.drawText(sk.label, { x: 42, y, size: 8, font: fontBold, color: darkNavy });
+    page.drawText(sk.val, { x: 130, y, size: 8, font: fontRegular, color: slate600 });
+    y -= 9.5;
   }
 
   const pdfBytes = await pdfDoc.save();

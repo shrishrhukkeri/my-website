@@ -132,7 +132,7 @@ export const Hero: React.FC<HeroProps> = () => {
 
         {/* Description Paragraph (Placed Below Profile Image) */}
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-600 dark:text-slate-300 font-light leading-relaxed">
-          Undergraduate researcher at RNSIT and Co-founder of <span className="font-semibold text-slate-900 dark:text-white">Vizagon</span>. Bridging physical microcontrollers and autonomous hardware with secure, intelligent edge telemetry pipelines.
+          Final-year CS Engineer at RNSIT specializing in AI/ML, IoT, and embedded robotics. Hands-on experience across edge intelligence, telemetry pipelines, and autonomous UAV systems.
         </p>
 
         {/* Action Buttons (Placed Below Description) */}

@@ -1,13 +1,13 @@
 import React from "react";
-import { Brain, Cpu, Code2, Users, CheckCircle2 } from "lucide-react";
+import { Brain, Cpu, Code2, Award, CheckCircle2 } from "lucide-react";
 import { profileData } from "../data/profileData";
 
 export const Tools: React.FC = () => {
   const categoryIcons: Record<string, React.ReactNode> = {
-    "AI / ML & Research": <Brain className="text-blue-600 dark:text-sky-400" size={20} />,
+    "AI / ML & Computer Vision": <Brain className="text-blue-600 dark:text-sky-400" size={20} />,
     "IoT & Embedded Systems": <Cpu className="text-indigo-600 dark:text-indigo-400" size={20} />,
-    "Software Engineering": <Code2 className="text-emerald-600 dark:text-emerald-400" size={20} />,
-    "Venture & Management": <Users className="text-amber-600 dark:text-amber-400" size={20} />,
+    "Data, Backend & Mobile": <Code2 className="text-emerald-600 dark:text-emerald-400" size={20} />,
+    "Platforms & Certifications": <Award className="text-amber-600 dark:text-amber-400" size={20} />,
   };
 
   return (

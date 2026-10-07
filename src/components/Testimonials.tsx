@@ -73,10 +73,10 @@ export const Testimonials: React.FC = () => {
           org="RNSIT"
         />
         <TestimonialCard
-          quote="Working with Shrish on our on-campus startup incubator Vizagon has been fantastic. He handles both the complex ESP32 firmware loops and React dashboard panels with absolute clarity."
+          quote="Working with Shrish across embedded IoT telemetry and autonomous drone control loops has been fantastic. He handles firmware logic and real-time dashboard panels with absolute clarity."
           name="Vaishnavi"
-          role="Co-Founder"
-          org="Vizagon Incubator"
+          role="Technical Collaborator"
+          org="RNSIT"
         />
         <TestimonialCard
           quote="His SAV4Secure safety automation was outstanding at SIH 2022. Shrish has a rare knack for analyzing physical hardware problems and formulating direct software solutions."

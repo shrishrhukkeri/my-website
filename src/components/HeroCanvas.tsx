@@ -198,9 +198,9 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ isDark, toggleDark }) =>
               />
               <div className="absolute inset-0 bg-brand-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            {/* Absolute indicator for startup founder status */}
+            {/* Absolute indicator */}
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-[#1a1b1e] border border-gray-200 dark:border-gray-800 px-3 py-1 rounded-full text-[10px] font-mono tracking-widest uppercase shadow-md whitespace-nowrap">
-              Vizagon Founder
+              CSE @ RNSIT
             </div>
           </motion.div>
 

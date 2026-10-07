@@ -31,11 +31,11 @@ export const VentureGenesis: React.FC = () => {
         </div>
 
         <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tight">
-          Vizagon Incubation
+          Autonomous Systems & Edge Research
         </h2>
 
         <p className="text-sm md:text-base opacity-75 leading-relaxed">
-          Founded by Shrish, along with Vaishnavi and Vamshi Ganesh B., Vizagon is a formal on-campus startup incubator designed to bridge the gap between physical-world telemetry sensors and secure virtual software networks.
+          Spearheading research in embedded flight control systems, autonomous UAV aeromodelling, and secure IoT telemetry architectures at RNSIT.
         </p>
 
         {/* MoU Milestone Card */}

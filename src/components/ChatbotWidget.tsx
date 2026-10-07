@@ -14,7 +14,7 @@ export const ChatbotWidget: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hello. I am Shrish's digital twin assistant. You can ask me questions about his projects, experience, research, achievements, or founding role at Vizagon.",
+      content: "Hello! I am Shrish's digital twin assistant. You can ask me questions about his engineering projects, technical experience, research, awards, and skills.",
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,20 +27,20 @@ export const ChatbotWidget: React.FC = () => {
   // Frontend Fallback matching engine for local tests without Groq configured
   const getMockResponse = (query: string): string => {
     const q = query.toLowerCase();
-    if (q.includes("startup") || q.includes("vizagon")) {
-      return "Shrish is the Founder of Vizagon, an on-campus startup developing hardware and software telemetry systems. The incubation MoU was signed on March 11, 2026, with the RNSIT institution.";
+    if (q.includes("startup") || q.includes("robotics") || q.includes("uav") || q.includes("drone") || q.includes("roles")) {
+      return "Shrish leads UAV and drone development at CDDT RNSIT, was selected as Top 15 in the Samsung Innovation Campus IoT program, and has interned in AI, robotics, and embedded systems at Pantech.AI.";
     }
     if (q.includes("ddos") || q.includes("kaggle") || q.includes("research") || q.includes("iomt")) {
       return `Shrish's primary research is "${profileData.research.title}". He published a custom Kaggle dataset tracking ESP32 node behavior under simulated volumetric attacks (HTTP, UDP, SYN floods) in resource-constrained IoMT environments.`;
     }
     if (q.includes("education") || q.includes("rnsit")) {
-      return "Shrish is pursuing his Bachelor of Engineering (BE) in Computer Science and Engineering at the RNS Institute of Technology (RNSIT), Bangalore. He has a CGPA of 9.2275 and is currently in his 6th Semester (2023-2027 batch).";
+      return "Shrish is pursuing his Bachelor of Engineering in Computer Science and Engineering at the RNS Institute of Technology (RNSIT), Bengaluru. He has a CGPA of 9.07 / 10 (6th Semester) and was selected as the first-ever Research Assistant from the CSE Department.";
     }
     if (q.includes("achievement") || q.includes("award") || q.includes("sih") || q.includes("boeing")) {
-      return "Shrish won 1st Place at the Smart India Hackathon (SIH) 2022 in the Smart Automation category (SAV4Secure child safety system). He also placed in the Top 20 at the Boeing Aeromodelling Workshop and qualified for the Boeing Zonal Fixed-Wing Piloting competition.";
+      return "Shrish won 1st Place at the Smart India Hackathon (SIH) 2022 (SAV4Secure child safety automation, ₹25,000 prize). He also qualified for the Boeing Zonal Aeromodelling Competition (Top 14) and won 1st Place at SVIT Drone Expo.";
     }
     if (q.includes("project") || q.includes("vsms") || q.includes("fast")) {
-      return "Core projects include: 1) Vizagon (on-campus startup). 2) VSMS (Vehicular Safety Management System & IoV, selected for KPIT). 3) SAV4Secure (SIH Winner). 4) FAST (Farmers Assistance System using Technology). 5) AiDBMS (NLP database admin layer).";
+      return "Core projects include: 1) SAV4Secure (SIH Winner - Child Safety Automation), 2) VSMS & IoV (Vehicular Safety Management System, selected for KPIT), 3) AiDBMS (NLP Intelligent Database System), 4) FAST (Precision Agriculture Assistant), 5) React Native Mobile Apps, 6) IoMT DDoS Anomaly Telemetry Dataset.";
     }
     if (q.includes("skill") || q.includes("tech")) {
       return "His skillsets are grouped into: 1) AI / ML (Computer Vision, Deep Learning, Quantum Computing). 2) IoT & Embedded Systems (ESP32, Arduino, Drone Building, Aeromodelling). 3) Software Engineering (React, TS, Node, Python, C++, SQL). 4) Venture & Project Management.";

@@ -8,8 +8,8 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: "What is Vizagon and what does it build?",
-    answer: "Vizagon is an on-campus startup incubator founded by Shrish, Vaishnavi, and Vamshi Ganesh B., backed by RNSIT. It focuses on developing integrated hardware sensors and secure software telemetry networks.",
+    question: "What core domains do you specialize in?",
+    answer: "I specialize in AI/ML, computer vision (YOLO), IoT and embedded systems (ESP32, Arduino), Edge AI, and autonomous UAV/drone flight controls, connecting physical sensor feeds with intelligent software.",
   },
   {
     question: "How does the ESP32 Live Telemetry Simulator work?",

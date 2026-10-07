@@ -1,5 +1,5 @@
 import React from "react";
-import { Monitor, Cpu, Rocket } from "lucide-react";
+import { Monitor, Cpu, Eye } from "lucide-react";
 
 export const About: React.FC = () => {
   const serviceNodes = [
@@ -14,16 +14,16 @@ export const About: React.FC = () => {
       desc: "Microcontrollers, sensor telemetry, and aerial drone development (CDDT).",
     },
     {
-      icon: <Rocket size={22} className="text-slate-700 dark:text-slate-200" />,
-      title: "Venture Architecture & Incubation",
-      desc: "Founding Vizagon, an on-campus technology venture incubator at RNSIT.",
+      icon: <Eye size={22} className="text-slate-700 dark:text-slate-200" />,
+      title: "Computer Vision & Edge AI",
+      desc: "Real-time YOLO detection, LiDAR SLAM, and edge ML inference on embedded robots.",
     },
   ];
 
   const stats = [
-    { value: "9.22", symbol: "+", label: "CGPA (CSE RNSIT)" },
-    { value: "1st", symbol: "Place", label: "SIH 2022 Winner" },
-    { value: "100", symbol: "+", label: "Verified Certifications" },
+    { value: "9.07", symbol: "/10", label: "CGPA (CSE RNSIT)" },
+    { value: "1st", symbol: "Place", label: "SIH Winner" },
+    { value: "130", symbol: "+", label: "Verified Certifications" },
   ];
 
   return (
@@ -74,10 +74,10 @@ export const About: React.FC = () => {
 
             <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-light leading-relaxed">
               <p>
-                I started my engineering journey from physical computing and hands-on circuits. Through that, I learned to love the process of building systems from scratch. Since then, this has led me to cyber-physical security, machine learning telemetry research, and venture building at RNSIT.
+                Final-year Computer Science & Engineering student at RNSIT with hands-on expertise spanning AI/ML, computer vision, IoT, and embedded robotics.
               </p>
               <p>
-                As the 1st Department Research Assistant in CSE at RNSIT and IoT Fellow at Samsung Innovation Campus, I design architectures that make edge hardware and autonomous systems secure, resilient, and ready for production deployment.
+                As the 1st Department Research Assistant in CSE at RNSIT and IoT Fellow at Samsung Innovation Campus, I engineer dependable architectures bridging intelligent algorithms with real-world edge hardware.
               </p>
             </div>
 
