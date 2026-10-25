@@ -1,55 +1,79 @@
 import { useState, useEffect } from "react";
+import { MotionConfig } from "framer-motion";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { TechStrip } from "./components/TechStrip";
 import { About } from "./components/About";
 import { Portfolio } from "./components/Portfolio";
 import { Experience } from "./components/Experience";
+import { Recognition } from "./components/Recognition";
 import { Footer } from "./components/Footer";
+import { ScrollProgress } from "./components/ScrollProgress";
+import { CurvedScrollbar } from "./components/CurvedScrollbar";
+import { GoldBackdrop } from "./components/GoldBackdrop";
+import { isNightNow, readOverride, saveOverride } from "./utils/timeTheme";
 
-function App() {
-  // Default to Light Mode as explicitly requested ("simple and light mode"), with full Dark Mode toggle support
-  const [isDark, setIsDark] = useState(false);
+interface AppProps {
+  /** "gold" recolours the whole site in gold and navy-black (served at gold.html). */
+  theme?: "gold";
+}
+
+function App({ theme }: AppProps) {
+  // Light by day, dark by night, following the visitor's local time. A manual toggle
+  // overrides it for the rest of the visit.
+  const [override, setOverride] = useState(readOverride);
+  const [isDark, setIsDark] = useState(() => (override ? override === "dark" : isNightNow()));
+
+  useEffect(() => {
+    if (override) return;
+    const sync = () => setIsDark(isNightNow());
+    const id = window.setInterval(sync, 60_000);
+    document.addEventListener("visibilitychange", sync);
+    return () => {
+      window.clearInterval(id);
+      document.removeEventListener("visibilitychange", sync);
+    };
+  }, [override]);
 
   useEffect(() => {
     const root = window.document.documentElement;
-    if (isDark) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-  }, [isDark]);
+    root.classList.toggle("dark", isDark);
+    root.classList.toggle("theme-gold", theme === "gold");
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", isDark ? (theme === "gold" ? "#0a0e18" : "#0b111e") : "#ffffff");
+  }, [isDark, theme]);
 
   const toggleDark = () => {
-    setIsDark((prev) => !prev);
+    const next = isDark ? "light" : "dark";
+    saveOverride(next);
+    setOverride(next);
+    setIsDark(next === "dark");
   };
 
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-[#0f141d] text-slate-900 dark:text-white transition-colors duration-300 font-sans antialiased selection:bg-[#f2583e]/20 selection:text-[#f2583e]">
-      {/* 1. Top Navigation Bar */}
-      <Header isDark={isDark} toggleDark={toggleDark} />
+    // reducedMotion="user" disables transform animations for visitors who prefer less motion
+    <MotionConfig reducedMotion="user">
+      <div className="w-full min-h-screen text-slate-900 dark:text-white transition-colors duration-300 font-sans antialiased">
+        {theme === "gold" && <GoldBackdrop />}
+        <div className="page-frame" aria-hidden />
+        <ScrollProgress />
+        <CurvedScrollbar />
 
-      {/* Main Content Flow matching the mockup */}
-      <main className="w-full">
-        {/* 2. Hero Section with Avatar Halo & Action Buttons */}
-        <Hero isDark={isDark} />
+        <Header isDark={isDark} toggleDark={toggleDark} />
 
-        {/* 3. Horizontal Tech Stack Strip directly below Hero */}
-        <TechStrip />
+        <main className="w-full">
+          <Hero isDark={isDark} theme={theme} />
+          <TechStrip />
+          <About />
+          <Portfolio />
+          <Experience />
+          <Recognition />
+        </main>
 
-        {/* 4. About Me: Left Services Timeline + Right Narrative & 3 Stats */}
-        <About />
-
-        {/* 5. Projects Section with Coral Indicator */}
-        <Portfolio />
-
-        {/* 6. Experience & Trajectory */}
-        <Experience />
-      </main>
-
-      {/* 7. Minimalist Contact Footer */}
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </MotionConfig>
   );
 }
 

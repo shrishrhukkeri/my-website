@@ -43,7 +43,7 @@ async function createResume() {
   });
 
   y -= 13;
-  const contactText = "Bengaluru, India | shrishrhukkeri@gmail.com | +91-7975660668 | linkedin.com/in/shrish-hukkeri | github.com/shrishrahulhukkeri";
+  const contactText = "Bengaluru, India | shrishrhukkeri@gmail.com | +91-7975660668 | linkedin.com/in/shrish-hukkeri | github.com/shrishrhukkeri";
   page.drawText(contactText, {
     x: 42,
     y,

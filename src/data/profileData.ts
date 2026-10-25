@@ -327,7 +327,7 @@ export const profileData: ProfileData = {
   contact: {
     email: "shrishrhukkeri@gmail.com",
     linkedin: "https://linkedin.com/in/shrish-hukkeri",
-    github: "https://github.com/shrishrahulhukkeri",
+    github: "https://github.com/shrishrhukkeri",
     resumeUrl: "/Shrish_Hukkeri_Resume.pdf"
   }
 };

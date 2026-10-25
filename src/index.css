@@ -2,6 +2,21 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme inline {
+  --color-accent: var(--flame-blue);
+  --color-accent-2: var(--peacock-green);
+  --color-accent-text: var(--accent-text);
+  --color-accent-2-text: var(--accent-2-text);
+  --color-on-accent: var(--on-accent);
+  --color-ink: var(--bg);
+}
+
+@theme {
+  --font-sans: 'Sora', -apple-system, sans-serif;
+  --font-display: 'Sora', -apple-system, sans-serif;
+  --font-mono: 'Sora', -apple-system, sans-serif;
+}
+
 @layer base {
   :root {
     --bg: #ffffff;
@@ -17,6 +32,15 @@
     --flame-glow: rgba(0, 102, 255, 0.22);
     --peacock-glow: rgba(0, 168, 132, 0.25);
     --tech-bar: #f1f5f9;
+    --accent-text: #0066ff;
+    --accent-2-text: #00a884;
+    --on-accent: #ffffff;
+    --accent-shadow: rgba(0, 70, 180, 0.6);
+    --glow-a: rgba(0, 102, 255, 0.16);
+    --glow-b: rgba(0, 168, 132, 0.16);
+    --grad-1: #0066ff;
+    --grad-2: #0284c7;
+    --grad-3: #00a884;
   }
 
   :root.dark {
@@ -33,6 +57,46 @@
     --flame-glow: rgba(41, 121, 255, 0.35);
     --peacock-glow: rgba(0, 203, 160, 0.35);
     --tech-bar: #131c2d;
+    --accent-text: #5393ff;
+    --accent-2-text: #00cba0;
+    --grad-1: #2979ff;
+    --grad-2: #38bdf8;
+    --grad-3: #00cba0;
+  }
+
+  /* Gold edition (gold.html): same design, gold and navy-black. Light = white page, dark = navy-black. */
+  :root.theme-gold {
+    --border-hover: #c9a64e;
+    --text: #0a0e18;
+    --flame-blue: #c9a64e;
+    --peacock-green: #a67f2a;
+    --accent-text: #8f6f22;
+    --accent-2-text: #7d6020;
+    --on-accent: #0a0e18;
+    --accent-shadow: rgba(140, 105, 30, 0.5);
+    --glow-a: rgba(201, 166, 78, 0.18);
+    --glow-b: rgba(166, 127, 42, 0.14);
+    --grad-1: #c9a64e;
+    --grad-2: #b8923a;
+    --grad-3: #8f6f22;
+  }
+
+  :root.theme-gold.dark {
+    --bg: #0a0e18;
+    --card: #111829;
+    --border: #1c2438;
+    --text: #f3efe6;
+    --flame-blue: #dccfae;
+    --peacock-green: #b8975a;
+    --accent-text: #e6d8ad;
+    --accent-2-text: #cdb06f;
+    --on-accent: #0a0e18;
+    --accent-shadow: rgba(0, 0, 0, 0.55);
+    --glow-a: rgba(220, 207, 174, 0.12);
+    --glow-b: rgba(184, 151, 90, 0.1);
+    --grad-1: #efe5cb;
+    --grad-2: #dccfae;
+    --grad-3: #b8975a;
   }
 
   html {
@@ -42,7 +106,7 @@
   body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Sora', -apple-system, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
   }
@@ -52,8 +116,8 @@
 .ambient-portrait-glow {
   background: radial-gradient(
     circle at center,
-    rgba(0, 102, 255, 0.2) 0%,
-    rgba(0, 168, 132, 0.18) 45%,
+    color-mix(in srgb, var(--flame-blue) 20%, transparent) 0%,
+    color-mix(in srgb, var(--peacock-green) 18%, transparent) 45%,
     transparent 72%
   );
   filter: blur(40px);
@@ -62,28 +126,341 @@
 .dark .ambient-portrait-glow {
   background: radial-gradient(
     circle at center,
-    rgba(41, 121, 255, 0.28) 0%,
-    rgba(0, 203, 160, 0.25) 50%,
+    color-mix(in srgb, var(--flame-blue) 28%, transparent) 0%,
+    color-mix(in srgb, var(--peacock-green) 25%, transparent) 50%,
     transparent 75%
   );
   filter: blur(55px);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Native scrollbar is hidden; <CurvedScrollbar /> draws a glass thumb inside the page frame */
+html {
+  scrollbar-width: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg);
+html::-webkit-scrollbar {
+  display: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+.scroll-thumb {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.35));
+  -webkit-backdrop-filter: blur(10px) saturate(1.8);
+  backdrop-filter: blur(10px) saturate(1.8);
+  border: 1px solid rgba(15, 35, 95, 0.22);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    0 2px 8px -2px rgba(15, 35, 95, 0.35);
+  transition: opacity 0.4s ease, width 0.2s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+.dark .scroll-thumb {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.14));
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 2px 8px -2px rgba(0, 0, 0, 0.6);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--flame-blue) 18%, transparent);
+  color: var(--flame-blue);
+}
+
+:focus-visible {
+  outline: 2px solid var(--flame-blue);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Accent text: the hero's flame-blue to peacock-green sweep, static */
+.text-gradient {
+  background-image: linear-gradient(90deg, var(--grad-1) 0%, var(--grad-2) 50%, var(--grad-3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .text-gradient {
+  background-image: linear-gradient(90deg, var(--grad-1) 0%, var(--grad-2) 50%, var(--grad-3) 100%);
+}
+
+/*
+ * Liquid glass: a curved, frosted surface with a specular edge.
+ * - backdrop blur + saturation refracts the tinted light behind it
+ * - layered inset shadows draw the bright top-left rim and the soft lower rim
+ * - a hairline outer ring keeps the edge legible on white
+ */
+.glass {
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.22));
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(15, 35, 95, 0.05),
+    inset 0 0 28px rgba(255, 255, 255, 0.28),
+    0 0 0 1px rgba(15, 35, 95, 0.07),
+    0 22px 44px -24px rgba(15, 35, 95, 0.28);
+}
+
+.dark .glass {
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 48px -24px rgba(0, 0, 0, 0.7);
+}
+
+/* Large panels that hold moving children skip the backdrop filter to avoid repaint patches */
+.glass-flat {
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(15, 35, 95, 0.05),
+    0 0 0 1px rgba(15, 35, 95, 0.07),
+    0 30px 60px -30px rgba(15, 35, 95, 0.3);
+}
+
+.dark .glass-flat {
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+/* Full-width glass bar (header, strips) */
+.glass-bar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.5));
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  backdrop-filter: blur(24px) saturate(1.8);
+  border-bottom: 1px solid rgba(15, 35, 95, 0.08);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.dark .glass-bar {
+  background: linear-gradient(180deg, rgba(11, 17, 30, 0.72), rgba(11, 17, 30, 0.5));
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/*
+ * Viewport frame: a curved bezel around the whole site. The huge spread shadow
+ * paints only the four corners black (the straight edges sit on the viewport),
+ * and a frosted liquid-glass rim follows the curve just inside it.
+ */
+.page-frame {
+  --frame-radius: 22px;
+  --frame-rim: 7px;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  border-radius: var(--frame-radius);
+  box-shadow: 0 0 0 60px #000;
+}
+
+@media (min-width: 768px) {
+  .page-frame {
+    --frame-radius: 34px;
+    --frame-rim: 10px;
+  }
+}
+
+.page-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--frame-rim);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.22) 55%, rgba(255, 255, 255, 0.45));
+  -webkit-backdrop-filter: blur(22px) saturate(1.9);
+  backdrop-filter: blur(22px) saturate(1.9);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+.page-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.85),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(15, 35, 95, 0.12),
+    inset 0 0 0 var(--frame-rim) rgba(255, 255, 255, 0.08),
+    inset 0 0 22px rgba(255, 255, 255, 0.35);
+}
+
+.dark .page-frame::before {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05) 55%, rgba(255, 255, 255, 0.12));
+}
+
+.dark .page-frame::after {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.3),
+    inset 0 0 22px rgba(255, 255, 255, 0.08);
+}
+
+/* Cursor-following glow and edge on glass cards (driven by --mx / --my set in JS) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.55),
+    color-mix(in srgb, var(--flame-blue) 7%, transparent) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.dark .spotlight::before {
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.1),
+    color-mix(in srgb, var(--flame-blue) 9%, transparent) 45%,
+    transparent 70%
+  );
+}
+
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    220px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--flame-blue) 60%, transparent),
+    color-mix(in srgb, var(--peacock-green) 32%, transparent) 50%,
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.spotlight:hover {
+  transform: translateY(-3px);
+}
+
+.spotlight:hover::before,
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* Infinite marquee */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+.animate-scroll-cue { animation: scroll-cue 1.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track,
+  .animate-scroll-cue { animation: none; }
+}
+
+/* Gold edition: tint the hero feather gold (light: multiply on white, dark: screen on navy) */
+.theme-gold .feather-img {
+  filter: grayscale(1) sepia(1) saturate(1.7) contrast(1.05);
+}
+
+.theme-gold.dark .feather-img {
+  filter: grayscale(1) invert(1) sepia(1) saturate(1.8) contrast(1.05);
+}
+
+.theme-gold .text-slate-900 {
+  color: #0a0e18;
+}
+
+.theme-gold.dark .text-slate-900 {
+  color: #f3efe6;
+}
+
+/* Gold edition: gold signature in both modes */
+.sig-gold {
+  display: none;
+  height: 3rem;
+  width: 6.3rem;
+  background: linear-gradient(90deg, var(--grad-1), var(--grad-3));
+  -webkit-mask: url(/signature.png) left center / contain no-repeat;
+  mask: url(/signature.png) left center / contain no-repeat;
+}
+
+.theme-gold .sig-gold {
+  display: block;
+}
+
+/*
+ * Signature colour shift: the letters ease between rich bright gold and pale light gold,
+ * 1.5s each way, continuously. Colour only, no glow or shadow.
+ */
+.theme-gold .sig-gold {
+  animation: sig-shift 3s ease-in-out infinite;
+}
+
+@keyframes sig-shift {
+  0%, 100% { filter: saturate(1.9) brightness(1.08) hue-rotate(-4deg); }
+  50%      { filter: saturate(0.55) brightness(1.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-gold .sig-gold { animation: none; }
+}
+
+.theme-gold .sig-img {
+  display: none;
+}
+
+/* Gold edition: no rim around the page, only the black corners */
+.theme-gold .page-frame::before,
+.theme-gold .page-frame::after {
+  display: none;
 }

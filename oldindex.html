@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Title and Metadata for Premium Portfolio -->
+    <title>Shrish Rahul Hukkeri | AIoT Developer</title>
+    <meta name="description" content="Portfolio of Shrish Rahul Hukkeri — final-year Computer Science Engineer at RNSIT building AI/ML, IoT, Edge AI and autonomous UAV systems." />
+    <meta property="og:title" content="Shrish Rahul Hukkeri | AIoT Developer" />
+    <meta property="og:description" content="AIoT Developer enabling edge intelligence. AI/ML, IoT, embedded robotics and UAV systems." />
+    <meta property="og:image" content="/favicon-512.png" />
+
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      // Pick light or dark from the visitor's local time before first paint (06:00-18:29 light).
+      (function () {
+        try {
+          var o = sessionStorage.getItem('theme-override');
+          var d = new Date(), m = d.getHours() * 60 + d.getMinutes();
+          var dark = o ? o === 'dark' : (m < 360 || m >= 1110);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/old-main.tsx"></script>
+  </body>
+</html>

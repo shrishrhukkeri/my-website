@@ -1,109 +1,93 @@
 import React from "react";
-import { Monitor, Cpu, Eye } from "lucide-react";
+import { BrainCircuit, Cpu, Plane, Layers, GraduationCap, MapPin } from "lucide-react";
+import { focusAreas, stats } from "../data/siteContent";
+import { CountUp, Reveal, SectionHeading, SpotlightCard } from "./ui/motion";
 
-export const About: React.FC = () => {
-  const serviceNodes = [
-    {
-      icon: <Monitor size={22} className="text-slate-700 dark:text-slate-200" />,
-      title: "Cyber-Physical & IoMT Security",
-      desc: "ML-based anomaly detection benchmarks on constrained edge hardware.",
-    },
-    {
-      icon: <Cpu size={22} className="text-slate-700 dark:text-slate-200" />,
-      title: "Embedded IoT & Autonomous Systems",
-      desc: "Microcontrollers, sensor telemetry, and aerial drone development (CDDT).",
-    },
-    {
-      icon: <Eye size={22} className="text-slate-700 dark:text-slate-200" />,
-      title: "Computer Vision & Edge AI",
-      desc: "Real-time YOLO detection, LiDAR SLAM, and edge ML inference on embedded robots.",
-    },
-  ];
+const icons = {
+  brain: BrainCircuit,
+  cpu: Cpu,
+  plane: Plane,
+  layers: Layers,
+} as const;
 
-  const stats = [
-    { value: "9.07", symbol: "/10", label: "CGPA (CSE RNSIT)" },
-    { value: "1st", symbol: "Place", label: "SIH Winner" },
-    { value: "130", symbol: "+", label: "Verified Certifications" },
-  ];
+export const About: React.FC = () => (
+  <section id="about" className="relative w-full py-24 sm:py-32 scroll-mt-16">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* Narrative */}
+        <div className="lg:col-span-7 space-y-8">
+          <SectionHeading eyebrow="About" title="Building where intelligence meets" accent="hardware" />
 
-  return (
-    <section
-      id="about"
-      className="w-full py-20 sm:py-28 bg-white dark:bg-[#0b111e] transition-colors duration-300 border-t border-slate-200/80 dark:border-slate-800/80"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Left Column: Vertical Connected Timeline with 3 Services */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="relative pl-6 space-y-8 text-left">
-              
-              {/* Vertical connecting line */}
-              <div className="absolute left-[7px] top-3 bottom-3 w-[2px] bg-slate-200 dark:bg-slate-800" />
-
-              {serviceNodes.map((item, idx) => (
-                <div key={idx} className="relative flex items-start gap-4 group">
-                  {/* Peacock Green & Flame Blue node indicator dot */}
-                  <div className="absolute -left-[23px] top-2 w-3.5 h-3.5 rounded-full bg-[#00a884] dark:bg-[#00cba0] ring-4 ring-white dark:ring-[#0b111e] shadow-xs" />
-
-                  {/* Service Card Content */}
-                  <div className="flex items-center gap-3.5 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors w-full">
-                    <div className="w-11 h-11 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 font-light mt-0.5">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-            </div>
-          </div>
-
-          {/* Right Column: "About me" narrative + 3 Big Highlight Stats */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
-              About me
-            </h2>
-
-            <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+          <Reveal delay={0.1}>
+            <div className="space-y-4 text-sm sm:text-[15px] text-slate-600 dark:text-slate-300 font-light leading-[1.8] max-w-xl">
               <p>
-                Final-year Computer Science & Engineering student at RNSIT with hands-on expertise spanning AI/ML, computer vision, IoT, and embedded robotics.
+                Final-year Computer Science Engineer at RNS Institute of Technology working across AI/ML, LLMs, IoT, robotics and full software-hardware stacks.
               </p>
               <p>
-                As the 1st Department Research Assistant in CSE at RNSIT and IoT Fellow at Samsung Innovation Campus, I engineer dependable architectures bridging intelligent algorithms with real-world edge hardware.
+                A team-builder and mentor who leads R&amp;D projects, with internship experience at Samsung Innovation Campus and Pantech, and national-level hackathon wins.
               </p>
             </div>
+          </Reveal>
 
-            {/* 3 Stats Row with Flame Blue & Peacock Green accents */}
-            <div className="pt-4 grid grid-cols-3 gap-4 border-t border-slate-200/80 dark:border-slate-800/80">
-              {stats.map((st, i) => (
-                <div key={i} className="space-y-1 text-left">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-2xl sm:text-3xl lg:text-4xl font-display font-black text-slate-900 dark:text-white">
-                      {st.value}
-                    </span>
-                    <span className="text-xl sm:text-2xl font-display font-extrabold text-[#0066ff] dark:text-[#00cba0]">
-                      {st.symbol}
-                    </span>
-                  </div>
-                  <div className="text-xs font-display font-medium text-slate-500 dark:text-slate-400 leading-tight">
-                    {st.label}
-                  </div>
-                </div>
-              ))}
+          <Reveal delay={0.2}>
+            <div className="flex flex-wrap gap-2.5">
+              <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-display font-medium text-slate-700 dark:text-slate-200">
+                <GraduationCap size={14} strokeWidth={1.6} className="text-accent-text" />
+                B.E. Computer Science · RNSIT · 2027
+              </span>
+              <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-display font-medium text-slate-700 dark:text-slate-200">
+                <MapPin size={14} strokeWidth={1.6} className="text-accent-text" />
+                Bengaluru, India
+              </span>
             </div>
+          </Reveal>
+        </div>
 
-          </div>
-
+        {/* Stats */}
+        <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+          {stats.map((st, i) => (
+            <SpotlightCard key={st.label} delay={i * 0.08} className="p-6">
+              <div className="flex items-baseline gap-0.5 font-display font-semibold text-3xl sm:text-[2rem] tracking-tight text-slate-900 dark:text-white">
+                <CountUp to={st.value} decimals={st.decimals} prefix={"prefix" in st ? st.prefix : ""} />
+                <span className="text-accent-text text-lg sm:text-xl font-semibold">{st.suffix}</span>
+              </div>
+              <div className="mt-2 text-[11px] font-display font-medium text-slate-500 dark:text-slate-400 leading-snug">
+                {st.label}
+              </div>
+            </SpotlightCard>
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
+
+      {/* Focus areas */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {focusAreas.map((area, i) => {
+          const Icon = icons[area.icon];
+          return (
+            <SpotlightCard key={area.title} delay={i * 0.08} className="p-6 flex flex-col gap-5">
+              <div className="glass w-11 h-11 rounded-full flex items-center justify-center text-accent-text">
+                <Icon size={19} strokeWidth={1.5} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-display font-semibold text-[15px] text-slate-900 dark:text-white">{area.title}</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-light leading-[1.75]">
+                  {area.desc}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-1.5 mt-auto">
+                {area.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[10px] px-2.5 py-1 rounded-full bg-white/50 dark:bg-white/5 ring-1 ring-slate-900/[0.06] dark:ring-white/10 text-slate-600 dark:text-slate-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </SpotlightCard>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+);
