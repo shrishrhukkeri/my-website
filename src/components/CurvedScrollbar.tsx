@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
  * Replaces the native scrollbar with a slim frosted-glass thumb that follows the
  * curve of the page frame. It fades out when idle and can be dragged.
  */
-export const CurvedScrollbar: React.FC = () => {
+const Thumb: React.FC = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const idleTimer = useRef<number | undefined>(undefined);
   const drag = useRef<{ startY: number; startScroll: number } | null>(null);
@@ -111,4 +111,18 @@ export const CurvedScrollbar: React.FC = () => {
       />
     </div>
   );
+};
+
+/** Drawn only at 768px and wider; phones keep the browser's own scrolling. */
+export const CurvedScrollbar: React.FC = () => {
+  const [wide, setWide] = useState(() => window.matchMedia("(min-width: 768px)").matches);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = () => setWide(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  return wide ? <Thumb /> : null;
 };

@@ -134,12 +134,15 @@
 }
 
 /* Native scrollbar is hidden; <CurvedScrollbar /> draws a glass thumb inside the page frame */
-html {
-  scrollbar-width: none;
-}
+/* Desktop and tablet only: phones keep their normal scrolling */
+@media (min-width: 768px) {
+  html {
+    scrollbar-width: none;
+  }
 
-html::-webkit-scrollbar {
-  display: none;
+  html::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .scroll-thumb {
@@ -262,6 +265,7 @@ html::-webkit-scrollbar {
 .page-frame {
   --frame-radius: 22px;
   --frame-rim: 7px;
+  display: none;
   position: fixed;
   inset: 0;
   z-index: 80;
@@ -270,8 +274,10 @@ html::-webkit-scrollbar {
   box-shadow: 0 0 0 60px #000;
 }
 
+/* The curved frame is for desktop and tablet; phones get the full-bleed page */
 @media (min-width: 768px) {
   .page-frame {
+    display: block;
     --frame-radius: 34px;
     --frame-rim: 10px;
   }
