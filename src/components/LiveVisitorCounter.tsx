@@ -21,23 +21,24 @@ export const LiveVisitorCounter: React.FC<LiveVisitorCounterProps> = ({
       const hasVisited = sessionStorage.getItem(HAS_VISITED_KEY);
 
       try {
-        let apiUrl = "https://api.counterapi.dev/v1/shrish_portfolio/visits/";
+        const apiUrl = !hasVisited
+          ? "https://abacus.jasoncameron.dev/hit/shrish-portfolio-aiot/visits"
+          : "https://abacus.jasoncameron.dev/get/shrish-portfolio-aiot/visits";
         if (!hasVisited) {
-          apiUrl = "https://api.counterapi.dev/v1/shrish_portfolio/visits/up";
           sessionStorage.setItem(HAS_VISITED_KEY, "true");
         }
 
         const res = await fetch(apiUrl, { cache: "no-store" });
         if (res.ok) {
           const data = await res.json();
-          if (data && typeof data.count === "number") {
-            const finalCount = Math.max(data.count, BASELINE_COUNT);
+          if (data && typeof data.value === "number") {
+            const finalCount = BASELINE_COUNT + data.value;
             setCount(finalCount);
             return;
           }
         }
       } catch (err) {
-        console.warn("CounterAPI network issue, falling back to local telemetry baseline.", err);
+        console.warn("Counter network issue, falling back to local telemetry baseline.", err);
       }
 
       // Local fallback telemetry calculation if API is offline

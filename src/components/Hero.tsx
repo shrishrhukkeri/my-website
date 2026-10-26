@@ -31,18 +31,23 @@ export const Hero: React.FC<HeroProps> = ({ isDark, theme }) => {
       const stored = localStorage.getItem("shrish_portfolio_visits");
       let count = stored ? parseInt(stored, 10) : BASE_COUNT;
 
-      if (!sessionStorage.getItem("shrish_visit_recorded")) {
+      const isNewVisit = !sessionStorage.getItem("shrish_visit_recorded");
+      if (isNewVisit) {
         count += 1;
         sessionStorage.setItem("shrish_visit_recorded", "true");
         localStorage.setItem("shrish_portfolio_visits", count.toString());
       }
       setVisitorCount(count);
 
-      fetch("https://api.counterapi.dev/v1/shrish-portfolio-aiot/visits/up")
+      const endpoint = isNewVisit
+        ? "https://abacus.jasoncameron.dev/hit/shrish-portfolio-aiot/visits"
+        : "https://abacus.jasoncameron.dev/get/shrish-portfolio-aiot/visits";
+
+      fetch(endpoint)
         .then((res) => res.json())
         .then((data) => {
-          if (data && typeof data.count === "number") {
-            const liveTotal = BASE_COUNT + data.count;
+          if (data && typeof data.value === "number") {
+            const liveTotal = BASE_COUNT + data.value;
             setVisitorCount(liveTotal);
             localStorage.setItem("shrish_portfolio_visits", liveTotal.toString());
           }
