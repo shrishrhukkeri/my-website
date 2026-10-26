@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [react()],
   build: {
     // Two pages: the black-and-gold portfolio (index.html) and the previous blue edition (oldindex.html)
